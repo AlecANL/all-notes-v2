@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --just-white: #fffffe;
+  --grey-10: #444444;
+  --black: rgb(26, 26, 26);
+  --grey-05: hsl(0, 0%, 60%);
+  --grey-04: hsla(0, 0%, 40%, 1);
+  --orange: #f3be7b;
+  --grey-20: #272822;
+  --grey-01: #efefef;
+  --orange-2: #ff6e6c;
+  --purple: #1f1135;
+  --grey: #e2daeb;
+  --baseFont: "Nunito", sans-serif;
+}
+body {
+  font-family: var(--baseFont);
+}
