@@ -5,12 +5,37 @@
   --grey-05: hsl(0, 0%, 60%);
   --grey-04: hsla(0, 0%, 40%, 1);
   --orange: #f3be7b;
+  --goldenrod: #ffda77;
   --grey-20: #272822;
   --grey-01: #efefef;
   --orange-2: #ff6e6c;
   --purple: #1f1135;
   --grey: #e2daeb;
   --baseFont: "Nunito", sans-serif;
+  --headline1: 700 3rem/3.375rem var(--baseFont);
+  --headline1-mobile: 700 1.8rem/2rem var(--baseFont);
+  --headline2: 700 2.375rem/2.700000047683716rem var(--baseFont);
+  --headline2-mobile: 700 1.5rem/2.700000047683716rem var(--baseFont);
+  --headline3: 700 2rem/2rem var(--baseFont);
+  --headline3-mobile: 700 1rem/2rem var(--baseFont);
+  --headline4: 700 1.5rem/1.649999976158142rem var(--baseFont);
+  --headline4-mobile: 700 0.8rem/1.649999976158142rem var(--baseFont);
+  --headline5: 700 1.25rem/1.649999976158142rem var(--baseFont);
+  --headline5-mobile: 700 0.7rem/1.649999976158142rem var(--baseFont);
+  --body1-regular-default: 400 1.1875rem/1.7999999523162842rem var(--baseFont);
+  --body1-regular-default-mobile: 400 1rem/1.7999999523162842rem var(--baseFont);
+  --body1-regular-underline: 400 1.1875rem/1.7999999523162842rem var(--baseFont);
+  --body1-regular-underline-mobile: 400 0.9rem/1.7999999523162842rem
+    var(--baseFont);
+  --body1-bold-default: 700 1.1875rem/1.7999999523162842rem var(--baseFont);
+  --body1-bold-underline: 700 1.1875rem/1.7999999523162842rem var(--baseFont);
+  --body2-regular-default: 400 1rem/1.5rem var(--baseFont);
+  --body2-regular-underline: 400 1rem/1.5rem var(--baseFont);
+  --body2-bold-default: 700 0.875rem/1.5rem var(--baseFont);
+  --body2-bold-underline: 700 0.875rem/1.5rem var(--baseFont);
+  --button-regular: 400 1rem/1.5rem var(--baseFont);
+  --button-bold: 700 1rem /1.5rem var(--baseFont);
+  --body3-regular: 400 1rem/1.5625rem var(--baseFont);
 }
 body {
   font-family: var(--baseFont);
@@ -32,6 +57,11 @@ figure {
   font: inherit;
 }
 
+button {
+  font: var(--button-bold);
+  cursor: pointer;
+}
+
 ul {
   list-style-type: none;
 }
@@ -48,12 +78,17 @@ a {
 }
 
 .btn {
-  outline: 1px solid green;
   display: flex;
   padding-inline: 1.5rem;
   padding-block: 0.75rem;
   justify-content: center;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
   gap: 0.5rem;
+  cursor: pointer;
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 .custom-btn {
@@ -94,7 +129,14 @@ a {
   background-color: var(--orange-2);
   color: var(--just-white);
 }
-
+.is-dark {
+  background-color: var(--black);
+  color: var(--just-white);
+}
+.is-orange {
+  background-color: var(--orange);
+  color: var(--black);
+}
 // .btn-float {
 //   outline: 1px solid red;
 //   position: fixed;

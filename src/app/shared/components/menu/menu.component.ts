@@ -9,14 +9,14 @@ import { IMenuNav } from '@shared/models/menu.interface';
 export class MenuComponent implements OnInit {
   menuNav: IMenuNav[] = [
     {
-      path: '/notes/all',
-      name: 'All Notes',
-      icon: 'icon-my_notes',
-    },
-    {
       path: '/notes/home',
       name: 'My Notes',
       icon: 'icon-all_notes',
+    },
+    {
+      path: '/notes/all',
+      name: 'All Notes',
+      icon: 'icon-my_notes',
     },
   ];
   currentPath: string = '';

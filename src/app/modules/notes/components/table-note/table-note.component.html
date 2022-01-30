@@ -1,0 +1,12 @@
+<div class="table-note" [formGroup]="noteForm">
+  <textarea
+    formControlName="note"
+    name="note"
+    id="note"
+    cols="30"
+    rows="10"
+  ></textarea>
+  <div class="note">
+    {{ noteForm.get("note")?.value }}
+  </div>
+</div>

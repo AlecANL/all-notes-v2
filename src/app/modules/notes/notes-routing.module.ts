@@ -13,18 +13,22 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
+        data: { state: 'home' },
       },
       {
         path: 'new',
         component: NewComponent,
+        data: { state: 'new' },
       },
       {
         path: 'note/:id',
         component: NoteIdComponent,
+        data: { state: 'note/:id' },
       },
       {
         path: 'all',
         component: AllComponent,
+        data: { state: 'all' },
       },
       {
         path: '**',
