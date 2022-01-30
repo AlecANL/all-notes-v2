@@ -14,4 +14,99 @@
 }
 body {
   font-family: var(--baseFont);
+  margin: 0;
+  box-sizing: border-box;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+a,
+p,
+figure {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.wrapper {
+  max-inline-size: 69.375rem;
+  margin-inline: auto;
+}
+
+.btn {
+  outline: 1px solid green;
+  display: flex;
+  padding-inline: 1.5rem;
+  padding-block: 0.75rem;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.custom-btn {
+  position: fixed;
+  inset-inline-end: 30px;
+  inset-block-end: 90px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  span {
+    display: none;
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+  @media screen and (min-width: 768px) {
+    position: static;
+    inline-size: 9.375rem;
+    border-radius: 50px;
+    span {
+      display: block;
+    }
+  }
+}
+.logo {
+  inline-size: 3.125rem;
+  block-size: 3.125rem;
+}
+.is-active {
+  background-color: var(--grey);
+  transition: all 0.3s ease-in-out;
+}
+
+.is-orange-2 {
+  background-color: var(--orange-2);
+  color: var(--just-white);
+}
+
+// .btn-float {
+//   outline: 1px solid red;
+//   position: fixed;
+//   inline-size: 3.125rem;
+//   block-size: 3.125rem;
+//   border-radius: 100px;
+//   span {
+//     display: none;
+//   }
+//   @media screen and (min-width: 768px) {
+//     span {
+//       display: block;
+//     }
+//   }
+// }
