@@ -103,3 +103,28 @@ blockquote {
   //   }
   // }
 }
+
+section.card-markdown {
+  a {
+    font: var(--body1-bold-underline);
+    color: var(--black);
+  }
+  h1 {
+    font: var(--headline4);
+  }
+  h2 {
+    font: var(--headline4);
+  }
+  h3 {
+    font: var(--headline4);
+  }
+  h4 {
+    font: var(--headline4);
+  }
+  h5 {
+    font: var(--headline5);
+  }
+  p {
+    font: var(--body2-regular-default);
+  }
+}

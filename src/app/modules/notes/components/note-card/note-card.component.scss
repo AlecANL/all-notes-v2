@@ -1,0 +1,36 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-block: 2.5rem 0.5rem;
+  padding-inline: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--grey);
+  block-size: 150px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.card-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-inline-size: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.card-user {
+  display: flex;
+  gap: 1rem;
+}
+.badge-visibility {
+  position: absolute;
+  inset-inline-end: 2rem;
+  inset-block-start: 1rem;
+}
+
+.card-markdown {
+  margin-block-start: 1rem;
+}

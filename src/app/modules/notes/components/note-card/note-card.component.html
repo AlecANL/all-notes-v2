@@ -1,0 +1,20 @@
+<article *ngIf="note" (click)="onLoadNoteById(note.id)" class="card">
+  <span class="badge-visibility">
+    {{ note.isPrivate ? "private" : "public" }}
+  </span>
+  <section
+    class="card-markdown card-ellipsis"
+    [innerHTML]="note.note | toHTML"
+  ></section>
+  <div class="card-user">
+    <img
+      width="28"
+      height="28"
+      [src]="note.user.avatar"
+      alt=" {{ note.user.nickname }} "
+    />
+    <span>
+      {{ note.user.nickname }}
+    </span>
+  </div>
+</article>

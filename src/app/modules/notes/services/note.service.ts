@@ -57,7 +57,7 @@ export class NoteService {
 
   createUser(avatar: string, name: string, id: string) {
     const user: IUser = {
-      username: name,
+      nickname: name,
       avatar,
       id,
     };

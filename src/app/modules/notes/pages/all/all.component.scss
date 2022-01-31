@@ -1,0 +1,17 @@
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  @media screen and (min-width: 480px) {
+  }
+  grid-template-columns: 1fr 1fr;
+
+  @media screen and (min-width: 480px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.all-page {
+  padding-block: 2rem;
+  padding-inline: 1.5rem;
+}

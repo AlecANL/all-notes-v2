@@ -13,6 +13,7 @@ import { TableNoteComponent } from './components/table-note/table-note.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { ModalComponent } from './components/modal/modal.component';
+import { NoteCardComponent } from './components/note-card/note-card.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ModalComponent } from './components/modal/modal.component';
     UploadFileComponent,
     TableNoteComponent,
     ModalComponent,
+    NoteCardComponent,
   ],
   imports: [
     CommonModule,

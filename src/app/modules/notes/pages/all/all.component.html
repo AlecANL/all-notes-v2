@@ -1,1 +1,13 @@
-<p>all works!</p>
+<section class="all-page">
+  <div class="wrapper">
+    <div class="home-content">
+      <app-loader *ngIf="isLoading"></app-loader>
+      <section class="card-grid" *ngIf="!isLoading">
+        <app-note-card
+          [note]="note"
+          *ngFor="let note of publicNotes"
+        ></app-note-card>
+      </section>
+    </div>
+  </div>
+</section>

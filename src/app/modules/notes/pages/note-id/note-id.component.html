@@ -1,1 +1,14 @@
-<p>note-id works!</p>
+<section class="note-id">
+  <div class="wrapper-note">
+    <div class="note-id-content">
+      <app-loader *ngIf="isLoading"></app-loader>
+      <div
+        *ngIf="!isLoading && note; else noShow"
+        [innerHTML]="note.note | toHTML"
+      ></div>
+      <ng-template #noShow>
+        <h1>Whoops Not Found :(</h1>
+      </ng-template>
+    </div>
+  </div>
+</section>
