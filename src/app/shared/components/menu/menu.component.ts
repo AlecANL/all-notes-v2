@@ -11,12 +11,12 @@ export class MenuComponent implements OnInit {
     {
       path: '/notes/home',
       name: 'My Notes',
-      icon: 'icon-all_notes',
+      icon: 'icon-my_notes',
     },
     {
       path: '/notes/all',
       name: 'All Notes',
-      icon: 'icon-my_notes',
+      icon: 'icon-all_notes',
     },
   ];
   currentPath: string = '';

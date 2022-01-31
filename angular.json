@@ -27,7 +27,13 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.scss", "src/icons.scss"],
+            "styles": [
+              "src/styles.scss",
+              "src/icons.scss",
+              "src/tags.scss",
+              "prismjs/themes/prism-okaidia.css",
+              "font-awesome/css/font-awesome.min.css"
+            ],
             "scripts": []
           },
           "configurations": {

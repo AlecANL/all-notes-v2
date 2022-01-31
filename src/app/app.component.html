@@ -13,3 +13,12 @@
 <main [@routerTransition]="getState(o)">
   <router-outlet #o="outlet"></router-outlet>
 </main>
+<lib-toastify-toast-container
+  iconLibrary="font-awesome"
+  position="top-right"
+  [pauseOnHover]="false"
+  [closeOnClick]="true"
+  [autoClose]="2000"
+  [transition]="'bounce'"
+  [pauseOnVisibilityChange]="false"
+></lib-toastify-toast-container>

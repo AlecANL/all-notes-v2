@@ -1,8 +1,21 @@
 <div class="upload-file-content">
-  <button class="btn btn-file is-dark">upload and image</button>
-  <div *ngIf="isLoadingFile" class="file-url">
-    <p>245247910_1766256903575496_6527519194874266166_n</p>
-    <button class="copy-btn">
+  <input
+    #file
+    class="input-file"
+    type="file"
+    name="file"
+    id="file"
+    (change)="handleUploadFile()"
+    aria-label="upload file"
+  />
+  <button [disabled]="isLoadingFile" class="btn is-dark btn-file">
+    <label for="file" class="">
+      {{ isLoadingFile ? "loading..." : "upload and image" }}
+    </label>
+  </button>
+  <div *ngIf="!isLoadingFile && ulrFile" class="file-url">
+    <p>{{ fileName }}</p>
+    <button (click)="handleCopyImageUrl()" class="copy-btn">
       <svg
         stroke="currentColor"
         fill="currentColor"

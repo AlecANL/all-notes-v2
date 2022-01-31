@@ -7,10 +7,31 @@
           <dropdown></dropdown>
         </div>
         <div class="note-actions-left">
-          <button class="btn is-dark">Save</button>
+          <button
+            (click)="handleCreateNote()"
+            *ngIf="currentUser"
+            class="btn is-dark"
+          >
+            Save
+          </button>
+          <button
+            (click)="openShowModal()"
+            *ngIf="!currentUser"
+            class="btn is-dark"
+          >
+            Create User
+          </button>
+          <button
+            *ngIf="isEditNote"
+            (click)="handleEditNote()"
+            class="btn is-dark"
+          >
+            Edit
+          </button>
         </div>
       </div>
       <table-note></table-note>
     </div>
   </div>
+  <user-modal></user-modal>
 </section>

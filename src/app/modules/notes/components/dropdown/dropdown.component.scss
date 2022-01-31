@@ -11,13 +11,13 @@
 
 .dropdown-options {
   position: absolute;
-  inset-block-start: 50px;
+  inset-block-start: 60px;
   inset-inline: 0;
   background-color: var(--just-white);
   filter: drop-shadow(rgba(0, 0, 0, 0.25) 0px 4px 4px);
   border-radius: 0.25rem;
   li {
-    padding-block: 0.5rem;
+    padding-block: 0.75rem;
     padding-inline: 1rem;
     cursor: pointer;
   }

@@ -5,8 +5,7 @@
     id="note"
     cols="30"
     rows="10"
+    (input)="handleSetNoteContent()"
   ></textarea>
-  <div class="note">
-    {{ noteForm.get("note")?.value }}
-  </div>
+  <div class="note" [innerHTML]="noteForm.get('note')?.value | toHTML"></div>
 </div>

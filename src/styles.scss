@@ -41,6 +41,17 @@ body {
   font-family: var(--baseFont);
   margin: 0;
   box-sizing: border-box;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #efefef;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #999999;
+    border-radius: 10px;
+    block-size: 3.125rem;
+  }
 }
 h1,
 h2,
@@ -60,6 +71,9 @@ figure {
 button {
   font: var(--button-bold);
   cursor: pointer;
+  &:disabled {
+    opacity: 0.5;
+  }
 }
 
 ul {
@@ -85,6 +99,7 @@ a {
   border-radius: 0.25rem;
   border: 1px solid transparent;
   gap: 0.5rem;
+  text-transform: capitalize;
   cursor: pointer;
   &:active {
     transform: scale(0.95);

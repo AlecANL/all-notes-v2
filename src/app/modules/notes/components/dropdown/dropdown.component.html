@@ -1,14 +1,16 @@
 <div class="dropdown-content">
   <button (click)="handleToggleDropDown()" class="btn dropdown is-dark">
-    <p>
+    <div>
       <span>visibility</span>
       -
-      <span>Public</span>
-    </p>
+      <span>
+        {{ isPrivateNote ? "private" : "public" }}
+      </span>
+    </div>
     <i class="icon-arrow-down"></i>
   </button>
   <ul *ngIf="isShowDropDown" class="dropdown-options">
-    <li>public</li>
-    <li>private</li>
+    <li (click)="handleTypeNote(false)">public</li>
+    <li (click)="handleTypeNote(true)">private</li>
   </ul>
 </div>

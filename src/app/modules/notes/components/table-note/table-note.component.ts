@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NoteService } from '@modules/notes/services/note.service';
 
 @Component({
   selector: 'table-note',
@@ -14,7 +15,21 @@ export class TableNoteComponent implements OnInit {
     ],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private noteService: NoteService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.isEditNote) {
+      const noteValue = this.noteService.noteContent;
+      this.noteForm.get('note')?.reset(noteValue);
+    }
+  }
+
+  get isEditNote() {
+    return this.noteService.isEditMode;
+  }
+
+  handleSetNoteContent() {
+    const note = this.noteForm.get('note')?.value;
+    this.noteService.setMoteContent = note;
+  }
 }

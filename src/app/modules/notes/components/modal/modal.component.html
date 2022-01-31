@@ -1,0 +1,39 @@
+<section *ngIf="isShowUserModal" class="modal">
+  <div [@modal-content] class="modal-content">
+    <button (click)="toggleShowModal(false)" class="btn-close">
+      <i class="icon-close"></i>
+    </button>
+    <input
+      placeholder="awesome username..."
+      type="text"
+      (input)="onSetUsername($event)"
+      aria-label="Username"
+    />
+    <div class="content">
+      <div class="overview">
+        <h3>Overview</h3>
+        <h5>
+          {{ username }}
+        </h5>
+        <img
+          width="100"
+          height="100"
+          *ngIf="avatar"
+          [src]="avatar"
+          alt=" {{ avatar }} "
+        />
+      </div>
+      <div class="avatars">
+        <figure
+          *ngFor="let avatar of avatars"
+          (click)="handleSetAvatar(avatar)"
+        >
+          <img [src]="avatar.url" alt=" {{ avatar.name }} " />
+        </figure>
+      </div>
+    </div>
+    <button (click)="handleCreateNewUser()" class="btn is-dark">
+      create user
+    </button>
+  </div>
+</section>
