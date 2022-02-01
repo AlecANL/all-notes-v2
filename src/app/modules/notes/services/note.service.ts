@@ -72,6 +72,7 @@ export class NoteService {
     if (this.isEditMode) {
       this.updateCurrentNote(note);
       this.setEditMode = false;
+      this.setNoteContent = '# 👋 Hello World!';
       return;
     }
     this.setNoteContent = '# 👋 Hello World!';
@@ -98,6 +99,7 @@ export class NoteService {
         this.setCurrentNote = null;
         this.router.navigateByUrl(`/notes/note/${data.note.id}`);
       });
+    this.setCurrentNote = null;
   }
 
   createUser(avatar: string, name: string, id: string) {

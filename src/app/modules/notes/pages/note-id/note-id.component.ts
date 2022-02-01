@@ -55,8 +55,5 @@ export class NoteIdComponent implements OnInit, AfterViewChecked {
     this.router.navigateByUrl(`/notes/new?id=${noteId}`);
   }
 
-  ngOnInit(): void {
-    this.noteService.setCurrentNote = null;
-    this.noteService.setEditMode = false;
-  }
+  ngOnInit(): void {}
 }

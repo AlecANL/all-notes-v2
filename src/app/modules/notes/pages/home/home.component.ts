@@ -33,5 +33,6 @@ export class HomeComponent implements OnInit {
     });
     this.noteService.setCurrentNote = null;
     this.noteService.setEditMode = false;
+    this.noteService.setNoteContent = '# 👋 Hello World!';
   }
 }

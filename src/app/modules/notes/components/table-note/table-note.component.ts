@@ -31,6 +31,7 @@ export class TableNoteComponent implements OnInit {
       } else {
         this.noteService.setCurrentNote = null;
         this.noteService.setEditMode = false;
+        this.noteForm.get('note')?.reset('# 👋 Hello World!');
       }
     });
     // if (this.noteService.isEditMode) {
