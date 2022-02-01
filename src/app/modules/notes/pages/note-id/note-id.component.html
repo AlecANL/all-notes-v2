@@ -2,10 +2,30 @@
   <div class="wrapper-note">
     <div class="note-id-content">
       <app-loader *ngIf="isLoading"></app-loader>
-      <div
-        *ngIf="!isLoading && note; else noShow"
-        [innerHTML]="note.note | toHTML"
-      ></div>
+      <div *ngIf="!isLoading && note; else noShow">
+        <div class="note-head">
+          <figure class="user-badge">
+            <img
+              width="28"
+              height="28"
+              [src]="note.user.avatar"
+              alt=" {{ note.user.nickname }} "
+            />
+            <figcaption>
+              {{ note.user.nickname }}
+            </figcaption>
+          </figure>
+          <button
+            (click)="handleEditMode()"
+            *ngIf="isShowButtonEdit"
+            class="btn is-dark"
+          >
+            Edit
+          </button>
+        </div>
+        <hr />
+        <div [innerHTML]="note.note | toHTML"></div>
+      </div>
       <ng-template #noShow>
         <h1>Whoops Not Found :(</h1>
       </ng-template>

@@ -6,3 +6,21 @@
   max-inline-size: 540px;
   margin-inline: auto;
 }
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  figcaption {
+    font-weight: bold;
+  }
+}
+
+hr {
+  margin-block: 1rem;
+}
+
+.note-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

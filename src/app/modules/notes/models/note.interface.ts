@@ -2,13 +2,14 @@ export interface IPostNote {
   isPrivate: boolean;
   note: string;
   user: IUser | null;
+  id?: string;
 }
 
 export interface INote {
   note: string;
   isPrivate: boolean;
   user: IUser | null;
-  id: string;
+  id?: string;
 }
 
 export interface IUser {

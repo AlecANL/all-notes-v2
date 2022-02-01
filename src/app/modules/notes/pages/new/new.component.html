@@ -8,25 +8,19 @@
         </div>
         <div class="note-actions-left">
           <button
-            (click)="handleCreateNote()"
-            *ngIf="currentUser"
-            class="btn is-dark"
-          >
-            Save
-          </button>
-          <button
             (click)="openShowModal()"
             *ngIf="!currentUser"
             class="btn is-dark"
           >
             Create User
           </button>
+          <button *ngIf="isEditNote" class="btn is-dark">Delete</button>
           <button
-            *ngIf="isEditNote"
-            (click)="handleEditNote()"
+            (click)="handleCreateNote()"
+            *ngIf="currentUser"
             class="btn is-dark"
           >
-            Edit
+            {{ isEditNote ? "Edit" : "Save" }}
           </button>
         </div>
       </div>

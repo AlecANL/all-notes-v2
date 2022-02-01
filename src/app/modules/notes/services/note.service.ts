@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+import { HttpService } from '@core/services/http.service';
 import { SaveStorage } from '@core/services/save-storage.service';
-import { IPostNote, IUser } from '../models/note.interface';
+import { IPostNote, IUser, INote, TNote } from '../models/note.interface';
+import { ToastService } from 'angular-toastify';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -10,12 +13,18 @@ export class NoteService {
   private _isEditMode: boolean = false;
   private _user: IUser | null = null;
   private _noteContent: string = '# 👋 Hello World!';
+  private _currentNote: TNote | null = null;
 
-  constructor(private saveToStorage: SaveStorage) {
+  constructor(
+    private saveToStorage: SaveStorage,
+    private httpService: HttpService,
+    private toastService: ToastService,
+    private router: Router
+  ) {
     this.onLoadUser();
   }
 
-  set setMoteContent(value: string) {
+  set setNoteContent(value: string) {
     this._noteContent = value;
   }
 
@@ -25,6 +34,14 @@ export class NoteService {
 
   set setEditMode(isEdit: boolean) {
     this._isEditMode = isEdit;
+  }
+
+  set setCurrentNote(note: TNote | null) {
+    this._currentNote = note;
+  }
+
+  get currentNote() {
+    return this._currentNote;
   }
 
   get user() {
@@ -52,7 +69,35 @@ export class NoteService {
       note: this._noteContent,
       user: this.user,
     };
-    console.log(note);
+    if (this.isEditMode) {
+      this.updateCurrentNote(note);
+      this.setEditMode = false;
+      return;
+    }
+    this.setNoteContent = '# 👋 Hello World!';
+    this.setPrivateNote = false;
+    this.httpService.postNote(note).subscribe((note) => {
+      this.toastService.success('Note Created Successfully 🚀 !!');
+      this.router.navigateByUrl(`/notes/note/${note.note.id}`);
+    });
+  }
+
+  deleteCurrentNote(id: string) {
+    this.httpService.deleteNote(id).subscribe(() => {
+      this.toastService.info('Note Deleted!!');
+      this.router.navigateByUrl('/notes/all');
+    });
+  }
+
+  updateCurrentNote(note: INote) {
+    this.httpService
+      .updateNot(note, `${this.currentNote?.id}`)
+      .subscribe((data) => {
+        this.toastService.success('Note Updated Successfully 🚀 !!');
+        this.setEditMode = false;
+        this.setCurrentNote = null;
+        this.router.navigateByUrl(`/notes/note/${data.note.id}`);
+      });
   }
 
   createUser(avatar: string, name: string, id: string) {

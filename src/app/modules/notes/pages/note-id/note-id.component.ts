@@ -1,9 +1,10 @@
 import { Component, OnInit, AfterViewChecked } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '@core/services/http.service';
 import { switchMap } from 'rxjs';
 import { TNote } from '../../models/note.interface';
 import * as Prisma from 'prismjs';
+import { NoteService } from '@modules/notes/services/note.service';
 
 @Component({
   selector: 'app-note-id',
@@ -17,7 +18,9 @@ export class NoteIdComponent implements OnInit, AfterViewChecked {
 
   constructor(
     private httpService: HttpService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private noteService: NoteService,
+    private router: Router
   ) {
     this.activatedRoute.params
       .pipe(switchMap(({ id }) => this.httpService.getNote(id)))
@@ -26,6 +29,7 @@ export class NoteIdComponent implements OnInit, AfterViewChecked {
           this.isLoading = false;
           this.isError = false;
           this.note = data.note;
+          this.noteService.setCurrentNote = data.note;
         },
         () => {
           this.note = null;
@@ -38,5 +42,21 @@ export class NoteIdComponent implements OnInit, AfterViewChecked {
     Prisma.highlightAll();
   }
 
-  ngOnInit(): void {}
+  get isShowButtonEdit() {
+    const noteUser = this.noteService.currentNote?.user.nickname;
+    const currentName = this.noteService.user?.nickname;
+
+    return noteUser === currentName;
+  }
+
+  handleEditMode() {
+    this.noteService.setEditMode = true;
+    const noteId = this.noteService.currentNote?.id;
+    this.router.navigateByUrl(`/notes/new?id=${noteId}`);
+  }
+
+  ngOnInit(): void {
+    this.noteService.setCurrentNote = null;
+    this.noteService.setEditMode = false;
+  }
 }

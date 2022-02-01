@@ -13,6 +13,11 @@
     align-items: center;
   }
 }
+.note-actions-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
 .note-actions-right {
   display: flex;

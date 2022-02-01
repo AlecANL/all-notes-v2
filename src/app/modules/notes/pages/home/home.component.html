@@ -1,7 +1,13 @@
-<section>
+<section class="home-page">
   <div class="wrapper">
     <div class="home-content">
-      <app-loader></app-loader>
+      <app-loader *ngIf="isLoading"></app-loader>
+      <div *ngIf="!isLoading && notes.length > 0" class="card-grid">
+        <app-note-card [note]="note" *ngFor="let note of notes"></app-note-card>
+      </div>
+      <div *ngIf="!isLoading && notes.length <= 0">
+        <h1>Not Notes Found</h1>
+      </div>
     </div>
   </div>
 </section>
