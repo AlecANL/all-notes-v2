@@ -5,6 +5,7 @@ import { switchMap } from 'rxjs';
 import { TNote } from '../../models/note.interface';
 import * as Prisma from 'prismjs';
 import { NoteService } from '@modules/notes/services/note.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-note-id',
@@ -12,9 +13,10 @@ import { NoteService } from '@modules/notes/services/note.service';
   styleUrls: ['./note-id.component.scss'],
 })
 export class NoteIdComponent implements OnInit, AfterViewChecked {
-  isLoading: boolean = true;
-  isError: boolean = false;
-  note: TNote | null = null;
+  private noteId: string = '';
+  public isLoading: boolean = true;
+  public isError: boolean = false;
+  public note: TNote | null = null;
 
   constructor(
     private httpService: HttpService,
@@ -23,13 +25,17 @@ export class NoteIdComponent implements OnInit, AfterViewChecked {
     private router: Router
   ) {
     this.activatedRoute.params
-      .pipe(switchMap(({ id }) => this.httpService.getNote(id)))
+      .pipe(
+        tap(({ id }) => {
+          this.noteId = id;
+        }),
+        switchMap(({ id }) => this.httpService.getNote(id))
+      )
       .subscribe(
         (data) => {
           this.isLoading = false;
           this.isError = false;
           this.note = data.note;
-          this.noteService.setCurrentNote = data.note;
         },
         () => {
           this.note = null;
@@ -43,16 +49,17 @@ export class NoteIdComponent implements OnInit, AfterViewChecked {
   }
 
   get isShowButtonEdit() {
-    const noteUser = this.noteService.currentNote?.user.nickname;
+    const noteUser = this.note?.user.nickname;
     const currentName = this.noteService.user?.nickname;
-
     return noteUser === currentName;
   }
 
   handleEditMode() {
-    this.noteService.setEditMode = true;
-    const noteId = this.noteService.currentNote?.id;
-    this.router.navigateByUrl(`/notes/new?id=${noteId}`);
+    if (!this.noteId) {
+      console.error('whoops for reason dont get id note :(');
+      return;
+    }
+    this.router.navigateByUrl(`/notes/new?id=${this.noteId}`);
   }
 
   ngOnInit(): void {}

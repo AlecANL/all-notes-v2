@@ -26,16 +26,12 @@ export class TableNoteComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((data) => {
       if (data['id']) {
         this.getNote(data['id']);
-        // const noteValue = this.noteService.currentNote?.note;
-        // this.noteForm.get('note')?.reset(noteValue);
       } else {
-        this.noteService.setCurrentNote = null;
+        this.noteService.setNoteContent = '# 👋 Hello World!';
         this.noteService.setEditMode = false;
         this.noteForm.get('note')?.reset('# 👋 Hello World!');
       }
     });
-    // if (this.noteService.isEditMode) {
-    // }
   }
 
   getNote(id: string) {
@@ -43,9 +39,7 @@ export class TableNoteComponent implements OnInit {
       this.noteService.setEditMode = true;
       this.noteService.setNoteContent = note.note.note;
       this.noteService.setPrivateNote = note.note.isPrivate;
-      this.noteService.setCurrentNote = note.note;
-      const noteValue = this.noteService.currentNote?.note;
-      this.noteForm.get('note')?.reset(noteValue);
+      this.noteForm.get('note')?.reset(this.noteService.noteContent);
     });
   }
 

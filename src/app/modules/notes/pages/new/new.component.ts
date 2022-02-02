@@ -4,6 +4,7 @@ import * as Prism from 'prismjs';
 import { NoteService } from '../../services/note.service';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from '../../../../core/services/http.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-new',
@@ -11,17 +12,16 @@ import { HttpService } from '../../../../core/services/http.service';
   styleUrls: ['./new.component.scss'],
 })
 export class NewComponent implements OnInit, AfterViewChecked {
+  private noteId: string = '';
+
   constructor(
     private noteService: NoteService,
     private modalService: ModalService,
-    private activatedRoute: ActivatedRoute,
-    private httpService: HttpService
+    private activatedRoute: ActivatedRoute
   ) {
-    // this.activatedRoute.queryParams.subscribe((data) => {
-    //   if (data['id']) {
-    //     this.getNote(data['id']);
-    //   }
-    // });
+    this.activatedRoute.queryParams.subscribe(({ id }) => {
+      this.noteId = id;
+    });
   }
 
   ngOnInit(): void {}
@@ -29,16 +29,6 @@ export class NewComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked(): void {
     Prism.highlightAll();
   }
-
-  // getNote(id: string) {
-  //   this.httpService.getNote(id).subscribe((note) => {
-  //     this.noteService.setEditMode = true;
-
-  //     this.noteService.setNoteContent = note.note.note;
-  //     this.noteService.setPrivateNote = note.note.isPrivate;
-  //     this.noteService.setCurrentNote = note.note;
-  //   });
-  // }
 
   get isEditNote() {
     return this.noteService.isEditMode;
@@ -57,10 +47,19 @@ export class NewComponent implements OnInit, AfterViewChecked {
       return;
     }
 
+    if (this.noteId) {
+      this.handleEditNote(this.noteId);
+      return;
+    }
+
     this.noteService.createNewNote();
   }
 
-  handleEditNote() {
-    // this.noteService.updateCurrentNote(this.)
+  handleEditNote(id: string) {
+    this.noteService.updateCurrentNote(id);
+  }
+
+  handleDeleteNote() {
+    this.noteService.deleteCurrentNote(this.noteId);
   }
 }

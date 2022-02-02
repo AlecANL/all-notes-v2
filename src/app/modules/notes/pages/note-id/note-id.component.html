@@ -2,7 +2,7 @@
   <div class="wrapper-note">
     <div class="note-id-content">
       <app-loader *ngIf="isLoading"></app-loader>
-      <div *ngIf="!isLoading && note; else noShow">
+      <div *ngIf="!isLoading && note">
         <div class="note-head">
           <figure class="user-badge">
             <img
@@ -24,11 +24,11 @@
           </button>
         </div>
         <hr />
-        <div [innerHTML]="note.note | toHTML"></div>
+        <article [innerHTML]="note.note | toHTML"></article>
       </div>
-      <ng-template #noShow>
+      <div *ngIf="!isLoading && isError">
         <h1>Whoops Not Found :(</h1>
-      </ng-template>
+      </div>
     </div>
   </div>
 </section>

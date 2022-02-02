@@ -14,13 +14,19 @@
           >
             Create User
           </button>
-          <button *ngIf="isEditNote" class="btn is-dark">Delete</button>
+          <button
+            (click)="handleDeleteNote()"
+            *ngIf="isEditNote"
+            class="btn is-dark-outline"
+          >
+            Delete
+          </button>
           <button
             (click)="handleCreateNote()"
             *ngIf="currentUser"
             class="btn is-dark"
           >
-            {{ isEditNote ? "Edit" : "Save" }}
+            Save
           </button>
         </div>
       </div>
