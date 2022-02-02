@@ -8,6 +8,12 @@
           *ngFor="let note of publicNotes"
         ></app-note-card>
       </section>
+      <not-found *ngIf="!isLoading && publicNotes.length <= 0"></not-found>
+      <div *ngIf="isError">
+        <h3>
+          {{ error }}
+        </h3>
+      </div>
     </div>
   </div>
 </section>

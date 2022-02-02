@@ -9,7 +9,9 @@ import { TNote } from '@modules/notes/models/note.interface';
 })
 export class AllComponent implements OnInit {
   private _notePublicNotes: TNote[] = [];
-  isLoading: boolean = true;
+  public isLoading: boolean = true;
+  public isError: boolean = false;
+  public error: string | null = null;
 
   get publicNotes() {
     return [...this._notePublicNotes];
@@ -17,9 +19,21 @@ export class AllComponent implements OnInit {
   constructor(private httpService: HttpService) {}
 
   ngOnInit(): void {
-    this.httpService.getPublicNotes().subscribe((n) => {
-      this._notePublicNotes = n;
-      this.isLoading = false;
-    });
+    this.onLoadAllPublicNotes();
+  }
+
+  onLoadAllPublicNotes() {
+    this.httpService.getPublicNotes().subscribe(
+      (noteList) => {
+        this._notePublicNotes = [...noteList];
+        this.isLoading = false;
+      },
+      (error) => {
+        this.error = error;
+        this.isLoading = false;
+        this.isError = true;
+        this._notePublicNotes = [];
+      }
+    );
   }
 }

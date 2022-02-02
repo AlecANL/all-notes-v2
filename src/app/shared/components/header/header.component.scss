@@ -6,6 +6,7 @@
   padding-block: 0.5rem;
   background-color: var(--just-white);
   box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
+  z-index: 10000;
   @media screen and (min-width: 768px) {
     position: sticky;
     inset-block-start: 0;

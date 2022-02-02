@@ -1,6 +1,7 @@
 .card {
   position: relative;
   display: flex;
+  max-inline-size: 22rem;
   flex-direction: column;
   justify-content: space-between;
   padding-block: 2.5rem 0.5rem;
@@ -15,7 +16,7 @@
 .card-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
-  max-inline-size: 100%;
+  // max-inline-size: 100%;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
