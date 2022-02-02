@@ -69,14 +69,14 @@ export class NoteService {
       note: this._noteContent,
       user: this.user,
     };
-    if (this.isEditMode) {
-      this.updateCurrentNote(note);
-      this.setEditMode = false;
-      this.setNoteContent = '# 👋 Hello World!';
-      return;
-    }
-    this.setNoteContent = '# 👋 Hello World!';
-    this.setPrivateNote = false;
+    // if (this.isEditMode) {
+    //   this.updateCurrentNote(note);
+    //   this.setEditMode = false;
+    //   this.setNoteContent = '# 👋 Hello World!';
+    //   return;
+    // }
+    // this.setNoteContent = '# 👋 Hello World!';
+    // this.setPrivateNote = false;
     this.httpService.postNote(note).subscribe((note) => {
       this.toastService.success('Note Created Successfully 🚀 !!');
       this.router.navigateByUrl(`/notes/note/${note.note.id}`);
@@ -91,17 +91,18 @@ export class NoteService {
   }
 
   updateCurrentNote(note: INote) {
-    this.httpService
-      .updateNot(note, `${this.currentNote?.id}`)
-      .subscribe((data) => {
-        this.toastService.success('Note Updated Successfully 🚀 !!');
-        this.setEditMode = false;
-        this.setCurrentNote = null;
-        this.router.navigateByUrl(`/notes/note/${data.note.id}`);
-      });
-    this.setCurrentNote = null;
+    // this.httpService
+    //   .updateNot(note, `${this.currentNote?.id}`)
+    //   .subscribe((data) => {
+    //     this.toastService.success('Note Updated Successfully 🚀 !!');
+    //     this.setEditMode = false;
+    //     this.setCurrentNote = null;
+    //     this.router.navigateByUrl(`/notes/note/${data.note.id}`);
+    //   });
+    // this.setCurrentNote = null;
   }
 
+  /* ================ Create User ================== */
   createUser(avatar: string, name: string, id: string) {
     const user: IUser = {
       nickname: name,

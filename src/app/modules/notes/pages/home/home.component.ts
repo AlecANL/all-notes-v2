@@ -11,7 +11,9 @@ import { TNote, IUser } from '../../models/note.interface';
 })
 export class HomeComponent implements OnInit {
   private _notesByName: TNote[] = [];
-  isLoading: boolean = true;
+  public isLoading: boolean = true;
+  public isError: boolean = false;
+  public error: string | null = null;
 
   constructor(
     private noteService: NoteService,
@@ -25,14 +27,22 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     const username: string = this.noteService.user?.nickname as string;
     if (!username) {
+      this._notesByName = [];
+      this.isLoading = false;
       return;
     }
-    this.httpService.getNotesByUser(username).subscribe((data) => {
-      this._notesByName = data;
-      this.isLoading = false;
-    });
-    this.noteService.setCurrentNote = null;
-    this.noteService.setEditMode = false;
-    this.noteService.setNoteContent = '# 👋 Hello World!';
+    this.onLoadNotesByName(username);
+  }
+  onLoadNotesByName(username: string) {
+    this.httpService.getNotesByUser(username).subscribe(
+      (data) => {
+        this._notesByName = data;
+        this.isLoading = false;
+      },
+      () => {
+        this.isLoading = false;
+        this.isError = true;
+      }
+    );
   }
 }
